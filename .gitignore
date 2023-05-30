@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/bin/Debug
+/bin/Release
+/obj
+/.vs/VSWorkspaceState.json
+/.vs/slnx.sqlite
+/.vs/FigmaReader/v17
+/.vs/FigmaCodeGenerator
+/packages/Newtonsoft.Json.13.0.1/packageIcon.png
+/packages/Newtonsoft.Json.13.0.1/Newtonsoft.Json.13.0.1.nupkg
+/packages/Newtonsoft.Json.13.0.1/LICENSE.md
+/packages/Newtonsoft.Json.13.0.1/.signature.p7s
+/packages/Newtonsoft.Json.13.0.1/lib
+/.vs/FigmaReader/project-colors.json

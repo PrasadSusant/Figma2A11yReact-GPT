@@ -1,0 +1,9 @@
+﻿// import unit test stuff here
+import { render } from '@testing-library/react';
+
+[auto-generated-text]
+
+test('Temporary test placeholder', () => {
+    // check expected value is not a false value (false, 0, '', null, undefined, or NaN).
+    expect(1).toBeTruthy();
+});

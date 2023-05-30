@@ -1,0 +1,28 @@
+﻿// Import coherence and fluent libraries here.
+import { useEffect } from 'react';
+import { } from './[componentName].styles';
+import { } from './[componentName].types';
+import { Stack } from '@fluentui/react';
+import { I[componentName]Props } from "./Register.types";
+
+[auto-generated-text]
+
+export const [componentName] = (props: I[componentName]Props) => {
+    // Sample props.
+    const [prop, setProp] = React.useState<string>('');
+
+    React.useEffect(() => {
+        // Constructor
+    },[]);
+
+    const method = () => {
+        console.log('Sample Method');
+    };
+
+    [render-component]
+    return (
+            <> {/* Render */}
+                
+            </>
+    );
+}

@@ -1,0 +1,14 @@
+{"prompt": "Ensure all form inputs have appropriate labels for screen reader accessibility.", "completion": "Add 'htmlFor' attribute on the <label> element which should corresponds to 'id' of the corresponding form control element."}
+{"prompt": "Do not use Material UI library.", "completion": ""}
+{"prompt": "Do not include label element while generating button element.", "completion": ""}
+{"prompt": "Use inline CSS styling.", "completion": ""}
+{"prompt": "Ensure there is some margin or spaces between two elements.", "completion": ""}
+{"prompt": "Provide some meaningful options for dropdown or ComboBox as required.", "completion": ""}
+{"prompt": "Apply appropriate styling and attributes according to the Microsoft accessibility standard guidelines.", "completion": ""}
+{"prompt": "Ensure proper indentation, line breaks, and formatting in the generated React code.", "completion": ""}
+{"prompt": "Ensure sufficient color contrast between text and background.", "completion": "Check the color contrast ratio between text and background using a color contrast checker. Adjust the color values to meet the minimum contrast ratio as per WCAG guidelines."}
+{"prompt": "Ensure that the focus order of interactive elements follows a logical and meaningful sequence.", "completion": ""}
+{"prompt": "Follow the Web Content Accessibility Guidelines (WCAG) 2.1 for keyboard accessibility.", "completion": "Ensure all interactive elements can be accessed and operated using keyboard navigation alone, as per WCAG 2.1 success criterion 2.1.1."}
+{"prompt": "Apply appropriate focus styles to indicate keyboard focus for interactive elements.", "completion": "If the element is currently focused, add a CSS class to apply a visible outline or other suitable styling to indicate focus."}
+{"prompt": "Use allowed ARIA attributes according to the WAI-ARIA specification.", "completion": "When using ARIA attributes, ensure that you only use the attributes allowed by the WAI-ARIA specification. Refer to the WAI-ARIA specification documentation for a list of allowed ARIA attributes and their proper usage."}
+{"prompt": "Include alternative text for images to provide a textual description.", "completion": "For each <img> element, add the 'alt' attribute with a descriptive text value explaining the image content."}

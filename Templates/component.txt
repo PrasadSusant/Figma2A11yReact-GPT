@@ -1,0 +1,32 @@
+﻿// Import coherence and fluent libraries here.
+import * as React from 'react';
+import { useEffect } from 'react';
+import { Card, CardStandardHeader } from '@cseo/controls';
+import { } from './[componentName].styles';
+import { } from './[componentName].types';
+import { Stack } from '@fluentui/react';
+
+[auto-generated-text]
+
+export const [componentName] = (props: I[componentName]Props) => {
+    // Sample props.
+    const [prop, setProp] = React.useState<string>('');
+
+    React.useEffect(() => {
+        // Constructor
+    },[]);
+
+    const method = () => {
+        console.log('Sample Method');
+    };
+
+    const getHeader = () => {
+        return <CardStandardHeader cardTitle={'Title!'} />;
+    };
+
+    return (
+            <>
+                [component-render-body]
+            </>
+    );
+}
