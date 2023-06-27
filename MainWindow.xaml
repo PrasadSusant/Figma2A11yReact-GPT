@@ -8,7 +8,7 @@
         Background="WhiteSmoke"
         Width="900"
         Height="375"
-        Title="Figma Code Generator">
+        Title="A11y - Figma Code Generator">
     <Window.Resources>
         <local:MainViewModel x:Key="viewModel"/>
     </Window.Resources>

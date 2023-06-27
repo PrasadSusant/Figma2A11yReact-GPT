@@ -16,7 +16,7 @@ namespace FigmaReader
     {
         private const string Endpoint = "https://httpqas26-frontend-qas-sdf-mw1p.qas.binginternal.com/completions";
         private static int ComponentCount = 0;
-        private const string apiKey1 = "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";
+        public const string ApiKey = "";
         static IEnumerable<string> Scopes = new List<string>() {
          "api://68df66a4-cad9-4bfd-872b-c6ddde00d6b2/access"
         };
@@ -158,8 +158,6 @@ namespace FigmaReader
 
             //////----Call Public Open AI----///////
 
-            // Set your OpenAI API credentials
-            string apiKey = "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";
             string endpoint = "https://api.openai.com/v1/completions";
             string modelType = "text-davinci-003"; //"davinci:ft-personal-2023-05-25-03-37-57"; // 
 
@@ -167,7 +165,7 @@ namespace FigmaReader
             var client = new HttpClient();
 
             // Set the required headers
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             //client.DefaultRequestHeaders.Add("X-ModelType", modelType);
             //client.DefaultRequestHeaders.Add("x-policy-id", "121");
 
@@ -238,8 +236,6 @@ namespace FigmaReader
 
         public static async Task<UploadFileResponse> UploadFile()
         {
-            // Set your OpenAI API credentials
-            string apiKey = "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";
             string endpoint = "https://api.openai.com/v1/files";
             string modelType = "text-davinci-003";
 
@@ -251,7 +247,7 @@ namespace FigmaReader
             using (HttpClient client = new HttpClient())
             {
                 // Set the request headers
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
                 // Create the multipart form data content
                 MultipartFormDataContent formData = new MultipartFormDataContent();
 
@@ -288,10 +284,10 @@ namespace FigmaReader
         {
             string uploadedFileId = "ft-DkqvS3XcVouDC3aDMGJe4TNi";
             string endpoint = $"https://api.openai.com/v1/files/{uploadedFileId}";
-            string apiKey = "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";
+            
 
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             HttpResponseMessage response;
             // Send the POST request
 
@@ -322,8 +318,6 @@ namespace FigmaReader
         public static async Task<string> CreateFineTuneModel(string uploadedFileId)
         {
 
-            // Set your OpenAI API credentials
-            string apiKey = "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";
             string endpoint = "https://api.openai.com/v1/fine-tunes";
             string modelType = "text-davinci-003";
             //string uploadedFileId = "file-TiRLZIkpHVjG0qXHnmTdKGjx";
@@ -331,7 +325,7 @@ namespace FigmaReader
             var client = new HttpClient();
 
             // Set the required headers
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             //client.DefaultRequestHeaders.Add("X-ModelType", modelType);
             //client.DefaultRequestHeaders.Add("x-policy-id", "121");
 
@@ -372,7 +366,7 @@ namespace FigmaReader
         {
 
             // Set your OpenAI API credentials
-            string apiKey = "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";
+            
             string fineTuneId = "file-TiRLZIkpHVjG0qXHnmTdKGjx";
             string endpoint = $"https://api.openai.com/v1/fine-tunes/{fineTuneModelId}";
             string modelType = "text-davinci-003";
@@ -381,7 +375,7 @@ namespace FigmaReader
             var client = new HttpClient();
 
             // Set the required headers
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
 
             HttpResponseMessage response;
             // Send the POST request
@@ -413,10 +407,10 @@ namespace FigmaReader
         {
             string uploadedFineTuneModel = "davinci:ft-personal-2023-05-25-03-37-57";
             string endpoint = $"https://api.openai.com/v1/models/{uploadedFineTuneModel}";
-            string apiKey = "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";
+            
 
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {ApiKey}");
             HttpResponseMessage response;
             // Send the POST request
 

@@ -148,18 +148,9 @@ namespace FigmaReader
                         this.Message = $"Retrieved '{docName}'";
                         this.OnPropertyChanged("Message");
 
-                        //this.ShowLoading = Visibility.Hidden;
-                        //this.OnPropertyChanged("ShowLoading");
-
                         try
                         {
                             this.OutputFolderPath = new Generator(this).Generate(docNode);
-
-                            //this.Message = $"Generated '{docName}'";
-                            //this.OnPropertyChanged("Message");
-
-                            //this.FilesGenerated = Visibility.Visible;
-                            //this.OnPropertyChanged("FilesGenerated");
                         }
                         catch (Exception ex)
                         {
@@ -240,22 +231,29 @@ namespace FigmaReader
 
             try
             {
-                using (var client = new HttpClient())
+                if (string.IsNullOrWhiteSpace(this.AccessToken))
                 {
-                    client.DefaultRequestHeaders.Add("X-Figma-Token", this.AccessToken);
-
-                    using (var response = await client.GetAsync(url))
-                    {
-                        response.EnsureSuccessStatusCode();
-                        var data = response.Content.ReadAsStringAsync().Result;
-                        return data;
-                    }
+                    throw new Exception("Please provide Figma PAT Token.");
+                    //this.Message = $"Please provide Figma PAT Token.";
+                    //this.OnPropertyChanged("Message");
                 }
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("X-Figma-Token", this.AccessToken);
+
+                        using (var response = await client.GetAsync(url))
+                        {
+                            response.EnsureSuccessStatusCode();
+                            var data = response.Content.ReadAsStringAsync().Result;
+                            return data;
+                        }
+                    }
             }
             catch (Exception ex)
             {
                 this.Message = $"{ex.Message}";
                 this.OnPropertyChanged("Message");
+                throw;
             }
 
             return null;

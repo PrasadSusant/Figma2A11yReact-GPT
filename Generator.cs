@@ -204,11 +204,11 @@ namespace FigmaReader
         /// <returns></returns>
         private string GenerateComponentXml(string leftPadding)
         {
-            var sb = new StringBuilder();
-            this.RootNode.Parent = null;
-            this.GenerateRecursively(this.RootNode, leftPadding, sb);
-            this.GenerateCodeUsingOpenAI();
-            return sb.ToString();
+           var sb = new StringBuilder();
+           this.RootNode.Parent = null;
+           this.GenerateRecursively(this.RootNode, leftPadding, sb);
+           this.GenerateCodeUsingOpenAI();
+           return sb.ToString();
         }
 
 
@@ -223,21 +223,36 @@ namespace FigmaReader
             //var result1 = await OpenAIService.GetFineTuneModelById(fineTuneModelId);
             //var resp1 = await OpenAIService.DeleteFile();
             //var resp = await OpenAIService.DeleteFineTuneModel();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(OpenAIService.ApiKey))
+                {
+                    throw new Exception("Please provide GPT Model API Key.");
+                }
 
+                var results = await this.ExecuteTaskAsync(this.ValidGPTNodes);
+                this.GPTResponse = results;
 
-            var results = await this.ExecuteTaskAsync(this.ValidGPTNodes);
-            this.GPTResponse = results;
+                CreateComponentGPTFile(this.DocumentName);
 
-            CreateComponentGPTFile(this.DocumentName);
+                viewModel.Message = string.Empty;
+                viewModel.OnPropertyChanged("Message");
 
-            viewModel.Message = string.Empty;
-            viewModel.OnPropertyChanged("Message");
+                viewModel.FilesGenerated = Visibility.Visible;
+                viewModel.OnPropertyChanged("FilesGenerated");
 
-            viewModel.FilesGenerated = Visibility.Visible;
-            viewModel.OnPropertyChanged("FilesGenerated");
+                viewModel.ShowLoading = Visibility.Collapsed;
+                viewModel.OnPropertyChanged("ShowLoading");
+            }
 
-            viewModel.ShowLoading = Visibility.Collapsed;
-            viewModel.OnPropertyChanged("ShowLoading");
+            catch(Exception ex)
+            {
+                viewModel.Message = $"{ex.Message}";
+                viewModel.ShowLoading = Visibility.Hidden;
+                viewModel.OnPropertyChanged("ShowLoading");
+                viewModel.OnPropertyChanged("Message");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }  
         }
 
         private async Task<string[]> ExecuteTaskAsync(Dictionary<string, string> validNodes)
@@ -248,15 +263,16 @@ namespace FigmaReader
             List<Task<string>> responses = new List<Task<string>>();
 
             // Reverse the list so that 1st figma node is populated first.
-            var validNodesValues = validNodes.Values.Reverse().ToList();
+            var validNodesValues = validNodes.Values.Reverse().ToList(); 
             var tasks = validNodesValues.Select(async nodeValue =>
             {
                 var result = await OpenAIService.CallOpenAPI(nodeValue);
 
                 // Covert response to response model
                 StreamResponse reponseModel = Newtonsoft.Json.JsonConvert.DeserializeObject<StreamResponse>(result);
-                if(reponseModel != null)
+                if(reponseModel != null && reponseModel.Choices != null)
                 {
+                    if(reponseModel.Choices.Count > 0)
                     return reponseModel.Choices[0]?.Text;
                 }
                 return string.Empty;
